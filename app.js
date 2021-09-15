@@ -2,8 +2,9 @@ const billAmount = document.querySelector("#bill-amount");
 const checkbutton = document.querySelector("#check-button");
 const cashGiven = document.querySelector("#cash-given");
 const message = document.querySelector("#error-message");
-const noOfNotes = document.querySelector(".no-of-notes");
-const availablenotes = [2000,500,100,20,10,5,1];
+const noOfNotes = document.querySelectorAll(".no-of-notes");
+console.log(noOfNotes);
+const availablenotes = [2000, 500, 100, 20, 10, 5, 1];
 checkbutton.addEventListener("click", function validbillamount() {
   hideMessage();
 
@@ -20,15 +21,13 @@ checkbutton.addEventListener("click", function validbillamount() {
     showMessage("please enter bill amount greated than 0");
   }
 });
-function hideMessage (){
+function hideMessage() {
   message.style.display = "none";
 }
 
-function calculateChange() {
-  for(var i=0; i < availablenotes.length; i++){
-    const numberOfNotes = Math.trunc(
-      amountToBeReturned / availablenotes[i]
-    )
+function calculateChange(amountToBeReturned) {
+  for (var i = 0; i < availablenotes.length; i++) {
+    const numberOfNotes = Math.trunc(amountToBeReturned / availablenotes[i]);
     amountToBeReturned %= availablenotes[i];
     noOfNotes[i].innerText = numberOfNotes;
   }
